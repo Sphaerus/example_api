@@ -31,6 +31,19 @@ LOCATIONS = [
   { name: 'Seattle' }
 ].freeze
 
+LOCATION_GROUPS = [
+  'group_1',
+  'group_2',
+  'group_3'
+]
+
+TARGET_GROUPS = [
+  'name_1',
+  'name_2',
+  'name_3',
+  'name_4'
+]
+
 PANEL_PROVIDERS_CODES.each { |panel_provider_code| PanelProvider.create!(code: panel_provider_code) }
 
 COUNTRIES.each do |country|
@@ -45,5 +58,32 @@ LOCATIONS.each do |location|
     name: location.fetch(:name),
     external_id: SecureRandom.uuid,
     secret_code: SecureRandom.hex(64)
+  )
+end
+
+LOCATION_GROUPS.each_with_index do |name, index|
+  LocationGroup.create!(name: name, panel_provider: PanelProvider.all[index], country: Country.all[rand(2)])
+end
+LocationGroup.create!(name: 'name here yo', panel_provider: PanelProvider.first, country: Country.all[rand(2)])
+
+TARGET_GROUPS.each_with_index do |name, index|
+  TargetGroup.create(name: name, panel_provider: PanelProvider.all[index])
+end
+
+TargetGroup.where(parent_id: nil).each do |target_group|
+  target_group_node_1 = TargetGroup.create(
+    name: "dummy_name#{rand(999)}",
+    panel_provider: PanelProvider.all[0],
+    parent: target_group
+  )
+  target_group_node_2 = TargetGroup.create(
+    name: "dummy_name#{rand(999)}",
+    panel_provider: PanelProvider.all[1],
+    parent: target_group_node_1
+  )
+  target_group_node_3 = TargetGroup.create(
+    name: "dummy_name#{rand(999)}",
+    panel_provider: PanelProvider.all[2],
+    parent: target_group_node_2
   )
 end
