@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  errors:
+    incorrect_credentials: 'You provided incorrect credentials'

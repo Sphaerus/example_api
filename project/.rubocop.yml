@@ -1,0 +1,64 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+      - db/**/*
+      - vendor/**/*
+      - config.ru
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+
+# Otherwise this gives some weird warnings about specs using `expect { subject }.to change { model.reload.value }`
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - '**/*.rake'
+    - app/api/**/*
+    - db/*
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 32
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 15
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/SignalException:
+  EnforcedStyle: semantic
