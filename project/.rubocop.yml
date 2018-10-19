@@ -65,3 +65,6 @@ Style/SignalException:
 
 Style/MixinUsage:
   Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false

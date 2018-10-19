@@ -5,7 +5,6 @@ module Authenticator
     def legit?(email:, password:)
       user = ::User.find_by_email(email)
       return user if user&.authenticate(password)
-
       false
     end
   end
