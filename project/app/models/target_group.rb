@@ -5,4 +5,6 @@ class TargetGroup < ApplicationRecord
   has_many :target_groups, foreign_key: :parent_id
   belongs_to :parent, class_name: 'TargetGroup', foreign_key: :parent_id, required: false
   has_and_belongs_to_many :countries
+
+  scope :with_provider, ->(provider_id) { where(panel_provider_id: provider_id) }
 end

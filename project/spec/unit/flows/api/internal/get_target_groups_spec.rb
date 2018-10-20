@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Flow::Api::Internal::GetLocations do
+RSpec.describe Flow::Api::Internal::GetTargetGroups do
   let(:flow)            { described_class.new(country_code: country_code) }
   let(:country_code)    { country.code }
 
@@ -18,23 +18,21 @@ RSpec.describe Flow::Api::Internal::GetLocations do
 
     context 'when country exist' do
       let!(:panel_provider)   { create :panel_provider }
-      let!(:panel_provider_1) { create :panel_provider, code: 'code1' }
+      let!(:panel_provider_1) { create :panel_provider }
       let!(:country)          { create :country, panel_provider: panel_provider }
 
-      context 'when no locations availble' do
+      context 'when no target groups availble' do
         it 'returns empty result' do
           expect(subject).to eq []
         end
       end
 
-      context 'when it has location groups and locations with apropriate panel provider' do
-        let!(:location_group)   { create :location_group, panel_provider: panel_provider, country: country }
-        let!(:location)         { create :location, location_group: location_group }
-        let!(:location_group_1) { create :location_group, panel_provider: panel_provider_1, country: country }
-        let!(:location_1)       { create :location, location_group: location_group_1, external_id: 11 }
+      context 'when it has target_groups' do
+        let!(:target_group)   { create :target_group, panel_provider: panel_provider, countries: [country] }
+        let!(:target_group_1) { create :target_group, panel_provider: panel_provider_1, countries: [country] }
 
         it 'returns array of collections' do
-          expect(subject).to eq [location]
+          expect(subject).to eq [target_group]
         end
       end
     end

@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   namespace :api do
     post 'authenticate' => 'authentication#authenticate'
     namespace :internal do
-      get 'locations' => 'locations#locations'
+      get 'locations'     => 'locations#locations'
+      get 'target_groups' => 'target_groups#target_groups'
     end
     get 'locations' => 'locations#locations'
+    get 'target_groups' => 'target_groups#target_groups'
   end
 end
