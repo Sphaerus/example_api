@@ -53,18 +53,19 @@ COUNTRIES.each do |country|
   )
 end
 
-LOCATIONS.each do |location|
-  Location.create!(
-    name: location.fetch(:name),
-    external_id: SecureRandom.uuid,
-    secret_code: SecureRandom.hex(64)
-  )
-end
-
 LOCATION_GROUPS.each_with_index do |name, index|
   LocationGroup.create!(name: name, panel_provider: PanelProvider.all[index], country: Country.all[rand(2)])
 end
 LocationGroup.create!(name: 'name here yo', panel_provider: PanelProvider.first, country: Country.all[rand(2)])
+
+LOCATIONS.each do |location|
+  Location.create!(
+    name: location.fetch(:name),
+    external_id: SecureRandom.uuid,
+    secret_code: SecureRandom.hex(64),
+    location_group: LocationGroup.all[rand(3)]
+  )
+end
 
 TARGET_GROUPS.each_with_index do |name, index|
   TargetGroup.create(name: name, panel_provider: PanelProvider.all[index])

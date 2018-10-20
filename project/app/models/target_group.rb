@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TargetGroup < ApplicationRecord
   belongs_to :panel_provider, required: false
   has_many :target_groups, foreign_key: :parent_id

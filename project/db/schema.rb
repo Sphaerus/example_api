@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_125751) do
+ActiveRecord::Schema.define(version: 2018_10_19_143111) do
 
   create_table "countries", force: :cascade do |t|
     t.string "code", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_125751) do
     t.string "secret_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_group_id"
     t.index ["external_id"], name: "index_locations_on_external_id", unique: true
   end
 

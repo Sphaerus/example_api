@@ -4,18 +4,21 @@ module Flow
   module Api
     module Internal
       class AuthorizeRequest
-        def initialize(headers:)
-          @headers = headers
+        def initialize(auth_token:)
+          @auth_token = auth_token
         end
 
         def call
-          return User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+          if decoded_auth_token
+            token_validator.validate!
+            return user_repo.find!(decoded_auth_token[:user_id])
+          end
           false
         end
 
         private
 
-        attr_reader :headers
+        attr_reader :auth_token
 
         def decoded_auth_token
           @decoded_auth_token ||= decoder.decode(token: token)
@@ -25,8 +28,16 @@ module Flow
           AuthToken::Decoder.new
         end
 
+        def token_validator
+          ::Validator::Token.new(decoded_auth_token: decoded_auth_token)
+        end
+
+        def user_repo
+          Repository::User.new
+        end
+
         def token
-          return headers['auth_token'].split(' ').last if headers['auth_token'].present?
+          return auth_token.split(' ').last if auth_token
           false
         end
       end

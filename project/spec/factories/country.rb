@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :country do
+    panel_provider_id { 1 }
     code              { 'code' }
-    panel_provider_id { nil }
   end
 end

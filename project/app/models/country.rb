@@ -11,8 +11,6 @@ class Country < ApplicationRecord
   private
 
   def correct_target_groups
-    if target_groups.any? { |tg| tg.parent }
-      errors.add(:target_groups ,'country can only have root target groups')
-    end
+    errors.add(:target_groups, 'country can only have root target groups') if target_groups.any?(&:parent)
   end
 end

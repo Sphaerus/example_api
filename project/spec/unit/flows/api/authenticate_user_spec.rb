@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require './app/flows/api/authenticate_user.rb'
 
 RSpec.describe Flow::Api::AuthenticateUser do
   let(:flow) { described_class.new(email: email, password: password) }

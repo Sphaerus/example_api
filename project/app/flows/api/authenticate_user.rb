@@ -10,7 +10,6 @@ module Flow
 
       def call
         return encoded_token if user_authenticated
-
         false
       end
 

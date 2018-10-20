@@ -6,5 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'authenticate' => 'authentication#authenticate'
+    namespace :internal do
+      get 'locations' => 'locations#locations'
+    end
   end
 end
