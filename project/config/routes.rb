@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     namespace :internal do
       get 'locations' => 'locations#locations'
     end
+    get 'locations' => 'locations#locations'
   end
 end
