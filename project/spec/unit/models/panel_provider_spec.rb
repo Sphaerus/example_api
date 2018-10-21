@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PanelProvider, type: :model do
   describe '#set_calculator_class' do
-    let!(:panel_provider) { create :panel_provider, code: code}
+    let!(:panel_provider) { create :panel_provider, code: code }
     subject { panel_provider.set_calculator_class }
 
     context 'when code times_a' do

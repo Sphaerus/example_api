@@ -56,7 +56,7 @@ RSpec.describe 'GET /api/internal/price' do
 
         it 'return incorrect params error' do
           subject
-          expect(JSON(response.body)).to eq({'error' => '{:location_params=>["are invalid"]}'})
+          expect(JSON(response.body)).to eq({ 'error' => '{:location_params=>["are invalid"]}' })
         end
       end
 
