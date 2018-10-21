@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :internal do
       get 'locations'     => 'locations#locations'
       get 'target_groups' => 'target_groups#target_groups'
+      get 'price'         => 'price'
     end
     get 'locations' => 'locations#locations'
     get 'target_groups' => 'target_groups#target_groups'

@@ -10,7 +10,7 @@ RSpec.describe 'GET /api/target_groups' do
     let(:request_body)     { { country_code: country_code } }
     let(:country_code)     { country.code }
     let(:panel_provider)   { create :panel_provider }
-    let(:panel_provider_1) { create :panel_provider }
+    let(:panel_provider_1) { create :panel_provider, code: '10_arrays' }
     let!(:country)         { create :country, panel_provider: panel_provider }
     let!(:user)            { create :user }
 

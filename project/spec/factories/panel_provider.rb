@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :panel_provider do
-    code { "code#{rand(9999)}" }
+    code { 'times_a' }
   end
 end
