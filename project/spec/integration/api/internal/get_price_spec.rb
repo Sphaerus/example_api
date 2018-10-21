@@ -45,6 +45,21 @@ RSpec.describe 'GET /api/internal/price' do
       let(:headers)    { { auth_token: auth_token } }
       let!(:user)      { create :user }
 
+      context 'when params missing or invalid' do
+        let(:locations) do
+          [
+            {
+              id: 1
+            }
+          ]
+        end
+
+        it 'return incorrect params error' do
+          subject
+          expect(JSON(response.body)).to eq({'error' => '{:location_params=>["are invalid"]}'})
+        end
+      end
+
       context 'when country dont exist' do
         let(:country_code) { 'usa!' }
 

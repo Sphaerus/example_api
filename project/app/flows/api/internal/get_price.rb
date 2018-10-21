@@ -4,9 +4,10 @@ module Flow
   module Api
     module Internal
       class GetPrice
-        def initialize(country_code:, _target_group_id:, locations:)
+        def initialize(country_code:, target_group_id:, locations:)
           @country_code    = country_code
           @locations       = locations
+          @target_group_id = target_group_id
         end
 
         def call
@@ -17,7 +18,7 @@ module Flow
 
         private
 
-        attr_reader :country_code, :locations
+        attr_reader :country_code, :locations, :target_group_id
 
         def calculator(provider)
           provider.set_calculator_class.new

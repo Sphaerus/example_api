@@ -6,7 +6,7 @@ module Validator
 
     def validate!
       return true if valid?
-      fail ValidationError, errors: errors
+      fail ValidationError, errors.messages
     end
   end
 end
